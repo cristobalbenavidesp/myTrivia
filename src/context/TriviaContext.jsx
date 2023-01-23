@@ -18,10 +18,13 @@ function TriviaContextProvider({ children }) {
       .then((res) => res.json())
       .then((resJSON) => {
         setQuestionsData([...questionsData, ...resJSON.results]);
+      })
+      .catch((err) => {
+        if (err.name === "Cleanup") return;
       });
 
     return () => {
-      abortController.abort();
+      abortController.abort("Cleanup");
     };
   }, [questionsData]);
 

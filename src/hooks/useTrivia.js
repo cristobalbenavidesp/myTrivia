@@ -25,7 +25,7 @@ export default function useTrivia() {
 
   useEffect(() => {
     if (questionsData.length === 0) return;
-
+    !currentQuestion.question && console.log("AAAA");
     !currentQuestion.question && nextQuestion();
   }, [questionsData]);
 
@@ -52,5 +52,5 @@ export default function useTrivia() {
     });
   }
   const progress = useProgress(nextQuestion, 10, 0, 1000);
-  return [currentQuestion, progress, answer, nextQuestion];
+  return [currentQuestion, progress, answer];
 }
